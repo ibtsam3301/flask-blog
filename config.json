@@ -1,0 +1,21 @@
+{
+    "params":
+    {
+        "local_server": "True",
+        "local_uri": "mysql://root:@localhost/codeerror",
+        "prod_uri": "mysql://root:@localhost/codeerror",
+        "fb_url": "https://facebook.com",
+        "tw_url": "http://twitter.com",
+        "gh_url": "http://github.com",
+        "blog_name": "Coding Errors",
+        "tag_line": "Kill The Bugs",
+        "gmail_user": "email@gmail.com",
+        "gmail_pass": "123456",
+        "about": "Hi, this a blog made using html, css, javascript, jquery and flask as backend",
+        "no_of_posts": 10,
+        "loginimage": "bootstrap-solid.svg",
+        "admin_user": "ibtsam",
+        "admin_pass": "3301ad",
+        "upload_folder": "/home/ibtsamahmad/flask/static"
+    }
+}

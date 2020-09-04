@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>ADMINN PANEL</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+  </head>
+  
+  <body class="text-center">
+ <!--navigation-->
+ <style>body
+  {
+    background:#e6e6ff;
+    font-family: 'Encode Sans', sans-serif;
+  }
+  /* navigation bar */
+  #scanfcode
+  {
+    border-radius:0px;
+    background:#fff;
+    padding:10px;
+    font-size:17px;
+  }
+  /* logo or main heading */
+  #logo
+  {
+    font-size:20px;
+    font-weight:bolder;
+    color:#00004d;
+    letter-spacing:2px;
+  }
+  /* navigation links*/
+  #link a
+  {
+    color:#01325d;
+    margin:0 20px 0 10px;
+    letter-spacing:1.5px;
+  }
+  /* navigation link with right border */
+  #first-link
+  {
+    padding-right:6px;
+    border-right:solid 1px #ccc;
+  }
+  /* sign up link button and toggle button */
+  #button-link ,#toogle-button
+  {
+    color:#f2f2f2;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0,0,0,.2);
+    border-radius: 2px;
+    background-color: #fa6a48;
+    line-height: 17px;
+  }
+  #button-link a
+  {
+    color:#f2f2f2;
+  }</style>
+ <nav id="scanfcode" class="navbar navbar navbar-expand-lg navbar-light fixed-top" style="background-color:#FF0000;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a id="logo" class="navbar-brand" href="/">{{params["blog_name"]}} Home</a>
+    </div>
+    
+  </div>
+</nav>
+</body>
+</html>
+ <!--navigation-->
+ 
+
+ <link href="{{url_for('static', filename='css/signin.css')}}" rel="stylesheet">
+ 
+    <form class="form-signin" action="/dashboard" method="post">
+       <!--flashing message-->
+       <style>.alert.error {
+        background-color: red;
+      }</style>
+  {% block content %}
+       
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}" id="alert"> {{ message|capitalize }} </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% endblock %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$("#alert").fadeOut(3000);
+</script>
+  <!--flashing messsage-->
+     
+      {% set fname = 'img/'+  params['loginimage']  %}
+      <img class="mb-4" src="{{url_for('static', filename=fname)}}" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Admin Login</h1>
+      <label for="uname" class="sr-only">User Name</label>
+      <input type="text" id="uname" name="uname" class="form-control" placeholder="User Name" required autofocus>
+      <label for="pass" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" name = "pass" class="form-control" placeholder="Password" required>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">© {{params['blog_name'] }} 2017-2018</p>
+    </form>
+
+
+ </body>
+</html>

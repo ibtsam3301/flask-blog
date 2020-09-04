@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/home-bg.jpg') }}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Admin Panel</h1>
+            <span class="subheading">Welcome TO The Admin Panel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <style>
+        .example_f {
+   border-radius: 4px;
+   background: linear-gradient(to right, #67b26b, #4ca2cb) !important;
+   border: none;
+   color: #FFFFFF;
+   text-align: center;
+   text-transform: uppercase;
+   font-size: 15px;
+   padding: 10px 10px;
+   width: 110px;
+   transition: all 0.4s;
+   cursor: pointer;
+   margin: 5px;
+ }
+ .example_f span {
+   cursor: pointer;
+   display: inline-block;
+   position: relative;
+   transition: 0.4s;
+ }
+ .example_f span:after {
+   content: '\00bb';
+   position: absolute;
+   opacity: 0;
+   top: 0;
+   right: -20px;
+   transition: 0.5s;
+ }
+ .example_f:hover span {
+   padding-right: 25px;
+ }
+ .example_f:hover span:after {
+   opacity: 1;
+   right: 0;
+ }
+      </style>
+       
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <!--using database-->
+      
+        {% block content %}
+       
+            {% for message in get_flashed_messages() %}
+            
+            <div class="alert alert-warning" id="alert">
+             
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+            {% endfor %}
+        
+            {% block page_content %}{% endblock %}
+        
+        {% endblock %}
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+          $("#alert").fadeOut(6000);
+   </script>
+        
+        <h1>Upload File</h1>
+        <form action="/uploader" method="post" enctype="multipart/form-data">
+        
+          <input type="file" name="file1" >
+          <button class="example_f">Submit</button>
+        
+        </form>
+        <hr>
+        
+        <h1>Basic Functions</h1>
+       <a href="/edit/0" ><button class="example_f"  style="font-size: 20px;
+        padding: 10px 10px;
+        width: 250px;">Add New Post</button></a>
+       <a href="/logout" ><button class="example_f" style="font-size: 20px;
+        padding: 10px 10px;
+        width: 160px;">Logout</button></a>
+        <hr>
+        <h1>Edit Posts</h1>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                {%for post in posts%}
+              <tr>
+                <td>{{post.sno}}</td>
+                <td>{{post.title}}</td>
+                <td>{{post.date}}</td>
+                <td><a href="/edit/{{post.sno}}"><button class="example_f"><span>Edit</span></button></a></td>
+                <td><a href="/delete/{{post.sno}}"><button class="example_f"><span>Delete</span></button></a></td>
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
+
+        <!-- Pager -->
+       
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
